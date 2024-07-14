@@ -1,6 +1,5 @@
 /// Request Object used by [Client] in [Client.execute]
 class IopRequest {
-  String appKey;
   String apiName;
   String httpMethod;
   final Map<String, String> apiParams = {};
@@ -8,7 +7,7 @@ class IopRequest {
   String simplify = "false";
   String format = "json";
 
-  IopRequest(this.appKey, this.apiName, {this.httpMethod = "Post"});
+  IopRequest(this.apiName, {this.httpMethod = "Post"});
 
   void addParam(String key, String value) => apiParams[key] = value;
 

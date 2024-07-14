@@ -5,6 +5,7 @@ library;
 
 export 'src/request.dart';
 export 'src/client.dart';
-export 'src/functions.dart';
+export 'src/utils.dart';
+export 'src/response.dart';
 
 // TODO: Export any libraries intended for clients of this package.
