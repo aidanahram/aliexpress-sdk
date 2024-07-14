@@ -10,7 +10,7 @@ String sign(String secret, String api, Map<String, String> parameters){
   if(api.contains("/")){
     paramStr += api;
   }
-  parameters.forEach((key, value) {paramStr += "$key${sortedByKeyMap[key]}"; });
+  sortedByKeyMap.forEach((key, value) {paramStr += "$key${sortedByKeyMap[key]}"; });
   final hmacSha256 = Hmac(sha256, utf8.encode(secret)); 
   final digest = hmacSha256.convert(utf8.encode(paramStr));
   return digest.toString().toUpperCase();

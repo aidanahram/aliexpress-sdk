@@ -11,29 +11,26 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages). 
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+Aliexpress SDK written in dart. Used to call Aliexpress APIs. Build in signed hash features and different methods (POST, GET) to call API. Based on the aliexpress python sdk.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Calls Aliexpress APIs in dart package. Generates hashes for request authentication.
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+Start by importing the library
+```dart
+import 'package:requests/requests.dart';
+```
 
 ```dart
-const like = 'sample';
+final request = IopRequest('/auth/token/create');
+request.addParam("code", "3_508156_0B6q8xRJgGk4iSTVqmhSSaKC566");
+request.addParam('uuid', 'uuid');
+final response = await client.execute(request);
 ```
 
 ## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+Examples are found in the ```/example``` folder

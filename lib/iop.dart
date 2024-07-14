@@ -3,9 +3,7 @@
 /// More dartdocs go here.
 library;
 
-export 'src/request.dart';
 export 'src/client.dart';
-export 'src/utils.dart';
+export 'src/request.dart';
 export 'src/response.dart';
-
-// TODO: Export any libraries intended for clients of this package.
+export 'src/utils.dart';

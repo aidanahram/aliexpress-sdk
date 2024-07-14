@@ -14,7 +14,7 @@ class IopClient{
     final sysParameters = {
       "app_key": _appKey,
       "sign_method": "sha256",
-      "timestamp": DateTime.timestamp().microsecondsSinceEpoch.toString(),
+      "timestamp": DateTime.timestamp().millisecondsSinceEpoch.toString(),
       // "partner_id": P_SDK_VERSION,
       "method": request.apiName,
       "simplify": request.simplify,
@@ -31,7 +31,7 @@ class IopClient{
     signParameters.addAll(applicationParameters);
     signParameters["sign"] = sign(_appSecret, request.apiName, signParameters);
 
-    String url = "$_serverUrl${request.apiName}";
+    String url = "$_serverUrl${request.apiName}?";
     Response r;
     if(request.httpMethod == 'POST' || request.fileParams.isNotEmpty){
       r = await Requests.post(url, queryParameters: signParameters, 
@@ -40,7 +40,6 @@ class IopClient{
       r = await Requests.get(url, queryParameters: signParameters, timeoutSeconds: timeout);
     }
 
-    print(r.body);
     if(r.hasError){
       print("Error Occured");
       return IopResponse();
@@ -48,7 +47,7 @@ class IopClient{
 
     final response = IopResponse();
 
-    final data = await jsonDecode(r.body) as Map<String, String>;
+    final data = await jsonDecode(r.body);
     if(data.containsKey('code')){
       response.code = data['code']!;
     }
@@ -59,7 +58,7 @@ class IopClient{
       response.code = data['message']!;
     }
     if(data.containsKey('request_id')){
-      response.type = data['request_id']!;
+      response.requestId = data['request_id']!;
     }
 
     return response;
