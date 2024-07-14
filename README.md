@@ -24,6 +24,7 @@ Start by importing the library
 import 'package:requests/requests.dart';
 ```
 
+Example Usage:
 ```dart
 final request = IopRequest('/auth/token/create');
 request.addParam("code", "3_508156_0B6q8xRJgGk4iSTVqmhSSaKC566");
