@@ -1,4 +1,4 @@
-import 'package:aliexpress_sdk/iop.dart';
+import 'package:aliexpress_sdk/aliexpress_sdk.dart';
 
 
 void main() async {

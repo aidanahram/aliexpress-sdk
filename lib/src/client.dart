@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:aliexpress_sdk/iop.dart';
+import 'package:aliexpress_sdk/aliexpress_sdk.dart';
 import 'package:requests/requests.dart';
 import 'package:http/http.dart';
 
