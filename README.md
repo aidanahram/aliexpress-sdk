@@ -11,7 +11,7 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages). 
 -->
 
-Aliexpress SDK written in dart. Used to call Aliexpress APIs. Build in signed hash features and different methods (POST, GET) to call API. Based on the aliexpress python sdk.
+Aliexpress SDK written in dart. Used to call Aliexpress APIs. Built-in signed hash and different request methods (POST, GET) to call API. Based on the aliexpress python sdk.
 
 ## Features
 
