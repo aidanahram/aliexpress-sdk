@@ -8,7 +8,7 @@ description:
   For api usage documentation visit the official aliexpress opensea documentation website.
   Please feel free to contribute to the project.
 
-version: 1.0.0
+version: 1.0.1
 repository: https://github.com/aidanahram/aliexpress-sdk
 
 environment:
