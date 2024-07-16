@@ -3,13 +3,19 @@ import 'package:aliexpress_sdk/aliexpress_sdk.dart';
 import 'package:requests/requests.dart';
 import 'package:http/http.dart';
 
-class IopClient{
+/// A client to send [IopRequest] through
+/// 
+/// Generate an [IopRequest] and pass it to [IopClient]
+class IopClient {
   final String _serverUrl;
   final String _appKey;
   final String _appSecret;
-  int timeout; 
-  IopClient(this._serverUrl, this._appKey, this._appSecret, {this.timeout = 30});
+  int timeout;
+  /// Constructor for class
+  IopClient(this._serverUrl, this._appKey, this._appSecret,
+      {this.timeout = 30});
 
+  /// Sends and [IopRequest] and return a [Future] of [IopResponse]
   Future<IopResponse> execute(IopRequest request, {String? accessToken}) async {
     final sysParameters = {
       "app_key": _appKey,
@@ -18,10 +24,10 @@ class IopClient{
       // "partner_id": P_SDK_VERSION,
       "method": request.apiName,
       "simplify": request.simplify,
-      "format":request.format
+      "format": request.format
     };
 
-    if(accessToken != null){
+    if (accessToken != null) {
       sysParameters["session"] = accessToken;
     }
 
@@ -33,14 +39,17 @@ class IopClient{
 
     String url = "$_serverUrl${request.apiName}?";
     Response r;
-    if(request.httpMethod == 'POST' || request.fileParams.isNotEmpty){
-      r = await Requests.post(url, queryParameters: signParameters, 
-        json: request.fileParams, timeoutSeconds: timeout);
+    if (request.httpMethod == 'POST' || request.fileParams.isNotEmpty) {
+      r = await Requests.post(url,
+          queryParameters: signParameters,
+          json: request.fileParams,
+          timeoutSeconds: timeout);
     } else {
-      r = await Requests.get(url, queryParameters: signParameters, timeoutSeconds: timeout);
+      r = await Requests.get(url,
+          queryParameters: signParameters, timeoutSeconds: timeout);
     }
 
-    if(r.hasError){
+    if (r.hasError) {
       print("Error Occured");
       return IopResponse();
     }
@@ -48,21 +57,21 @@ class IopClient{
     final response = IopResponse();
 
     final data = await jsonDecode(r.body);
-    if(data.containsKey('code')){
+    if (data.containsKey('code')) {
       response.code = data['code']!;
     }
-    if(data.containsKey('type')){
+    if (data.containsKey('type')) {
       response.type = data['type']!;
     }
-    if(data.containsKey('message')){
+    if (data.containsKey('message')) {
       response.code = data['message']!;
     }
-    if(data.containsKey('request_id')){
+    if (data.containsKey('request_id')) {
       response.requestId = data['request_id']!;
     }
 
     return response;
-  }        
+  }
 }
 
 // P_CODE = 'code'

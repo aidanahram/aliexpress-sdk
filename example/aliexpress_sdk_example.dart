@@ -1,11 +1,11 @@
 import 'package:aliexpress_sdk/aliexpress_sdk.dart';
 
-
 void main() async {
   // params 1 : gateway url
   // params 2 : appkey
   // params 3 : appSecret
-  final client = IopClient("https://api-sg.aliexpress.com/rest", '508156', 'Z3AkHoDLoTsK34fu8txgwtnC8vQyMC4j');
+  final client = IopClient("https://api-sg.aliexpress.com/rest", '508156',
+      'Z3AkHoDLoTsK34fu8txgwtnC8vQyMC4j');
 
   // create a api request set GET mehotd
   // default http method is POST
