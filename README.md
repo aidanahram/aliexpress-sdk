@@ -21,11 +21,12 @@ Calls Aliexpress APIs in dart package. Generates hashes for request authenticati
 
 Start by importing the library
 ```dart
-import 'package:requests/requests.dart';
+import "package:aliexpress_sdk/aliexpress_sdk.dart";
 ```
 
 Example Usage:
 ```dart
+final client = IopClient("https://api-sg.aliexpress.com/rest", 'your_app_key', 'your_app_secret');
 final request = IopRequest('/auth/token/create');
 request.addParam("code", "3_508156_0B6q8xRJgGk4iSTVqmhSSaKC566");
 request.addParam('uuid', 'uuid');
@@ -34,4 +35,4 @@ final response = await client.execute(request);
 
 ## Additional information
 
-Examples are found in the ```/example``` folder
+Examples are found in the ```example``` folder
