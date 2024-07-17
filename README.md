@@ -26,7 +26,7 @@ import "package:aliexpress_sdk/aliexpress_sdk.dart";
 
 Example Usage:
 ```dart
-final client = IopClient("https://api-sg.aliexpress.com/rest", 'your_app_key', 'your_app_secret');
+final client = IopClient("api-sg.aliexpress.com/rest", 'your_app_key', 'your_app_secret');
 final request = IopRequest('/auth/token/create');
 request.addParam("code", "3_508156_0B6q8xRJgGk4iSTVqmhSSaKC566");
 request.addParam('uuid', 'uuid');
