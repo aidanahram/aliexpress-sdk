@@ -4,8 +4,8 @@ void main() async {
   // params 1 : gateway url
   // params 2 : appkey
   // params 3 : appSecret
-  final client = IopClient(
-      "https://api-sg.aliexpress.com/rest", '508156', 'your_app_secret');
+  final client =
+      IopClient("api-sg.aliexpress.com", '508156', 'your_app_secret');
 
   // create a api request set GET mehotd
   // default http method is POST

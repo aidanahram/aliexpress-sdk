@@ -1,16 +1,16 @@
 import 'dart:convert';
 import 'package:aliexpress_sdk/aliexpress_sdk.dart';
-import 'package:requests/requests.dart';
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 
 /// A client to send [IopRequest] through
-/// 
+///
 /// Generate an [IopRequest] and pass it to [IopClient]
 class IopClient {
   final String _serverUrl;
   final String _appKey;
   final String _appSecret;
   int timeout;
+
   /// Constructor for class
   IopClient(this._serverUrl, this._appKey, this._appSecret,
       {this.timeout = 30});
@@ -31,25 +31,22 @@ class IopClient {
       sysParameters["session"] = accessToken;
     }
 
-    final applicationParameters = request.apiParams;
+    final applicationParameters = request.queryParams;
 
     final signParameters = sysParameters;
     signParameters.addAll(applicationParameters);
     signParameters["sign"] = sign(_appSecret, request.apiName, signParameters);
 
-    String url = "$_serverUrl${request.apiName}?";
-    Response r;
+    final uri = Uri.http(_serverUrl, "/rest${request.apiName}", signParameters);
+    print(uri);
+    http.Response r;
     if (request.httpMethod == 'POST' || request.fileParams.isNotEmpty) {
-      r = await Requests.post(url,
-          queryParameters: signParameters,
-          json: request.fileParams,
-          timeoutSeconds: timeout);
+      r = await http.post(uri, body: request.fileParams);
     } else {
-      r = await Requests.get(url,
-          queryParameters: signParameters, timeoutSeconds: timeout);
+      r = await http.get(uri);
     }
 
-    if (r.hasError) {
+    if (r.statusCode >= 400) {
       print("Error Occured");
       return IopResponse();
     }
@@ -58,18 +55,19 @@ class IopClient {
 
     final data = await jsonDecode(r.body);
     if (data.containsKey('code')) {
+      print("contains Code");
       response.code = data['code']!;
     }
     if (data.containsKey('type')) {
       response.type = data['type']!;
     }
     if (data.containsKey('message')) {
-      response.code = data['message']!;
+      response.message = data['message']!;
     }
     if (data.containsKey('request_id')) {
       response.requestId = data['request_id']!;
     }
-
+    response.body = data;
     return response;
   }
 }

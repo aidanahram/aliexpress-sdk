@@ -3,12 +3,8 @@ description:
   A dart implementation for aliexpress sdk based on the official python sdk. 
   Used to communicate with the aliexpress opensea api.
   Comes with functions to generate hash for secret key.
-  Package is made for dart developers looking to build on the aliexpress opensea platform.
-  Useful for flutter applications that are trying to connect with the aliexpress platform. 
-  For api usage documentation visit the official aliexpress opensea documentation website.
-  Please feel free to contribute to the project.
 
-version: 1.0.1
+version: 1.1.0
 repository: https://github.com/aidanahram/aliexpress-sdk
 
 environment:
@@ -17,10 +13,9 @@ environment:
 # Add regular dependencies here.
 dependencies:
   crypto: ^3.0.3
-  http: ^0.13.6
-  requests: ^4.7.0
+  http: ^1.2.2
   # path: ^1.8.0
 
 dev_dependencies:
-  lints: ^3.0.0
+  lints: ^4.0.0
   test: ^1.24.0

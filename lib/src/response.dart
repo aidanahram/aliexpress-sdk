@@ -4,9 +4,10 @@ class IopResponse {
   String code = "";
   String message = "";
   String requestId = "";
-  Map<String, String> body = {};
+  Map<String, dynamic> body = {};
+
   /// Empty Constructor
-  /// 
+  ///
   /// Class variables are set after [IopRequest] is executed by [IopClient.execute]
   IopResponse();
 }
